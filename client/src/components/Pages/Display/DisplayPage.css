@@ -1,0 +1,111 @@
+/* DisplayPage */
+.display-page{
+    padding: 10px;
+}
+.contentPic{
+    width: 100px;
+    height: 100px;
+}
+.add-file{
+    display: flex;
+    gap: 48%;
+}
+.add-file-btn{
+    border: 2px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    display: flex;
+    padding: 8px 4px;
+    width: 100px;
+    height: 40px;
+    color: white;
+    background-color: rgb(135, 173, 222);
+    margin-bottom: 12px;
+}
+.file-str{
+    border: 2px solid rgba(255,255,255,0.1);
+    padding: 6px 4px;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+.folder-pic{
+    width: 20px;
+    height: 20px;
+    color: white;
+}
+.file-name{
+    color: white;
+}
+/* GenDisplay */
+.Doc{
+    width: 100px;
+    height: 100px;
+}
+
+/* SingleDoc */
+.single-doc{
+    padding: 10px;
+}
+.file-pics{
+    width: 100px;
+    height: 100px;
+}
+
+@media(min-width:280px){
+    .instrc{
+        font-size: small;
+        width: 95%;
+    }
+    .add-file{
+        gap: 5%;
+    }
+}
+@media(min-width:360px){
+    .instrc{
+        font-size: small;
+        width: 95%;
+    }
+    .add-file{
+        gap: 5%;
+    }
+}
+
+@media(min-width:412px){
+    .instrc{
+        font-size: small;
+        width: 95%;
+    }
+    .add-file{
+        gap: 3%;
+    }
+    .single-doc{
+        padding: 15px;
+    }
+}
+@media(min-width:540px){
+    .instrc{
+        font-size: small;
+        width: 100%;
+    }
+    .add-file{
+        gap: 58%;
+    }
+}
+@media(min-width:717px){
+    .instrc{
+        font-size: small;
+        width: 100%;
+    }
+    .add-file{
+        gap: 42%;
+    }
+}
+@media(min-width:1024px){
+    .instrc{
+        font-size: small;
+        width: 100%;
+    }
+    .add-file{
+        gap: 58%;
+    }
+}

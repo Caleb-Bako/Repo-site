@@ -1,0 +1,17 @@
+.customers{
+    display: flex;
+    gap: 20px;
+}
+.customer-id,.customer-name,.customer-email,.customer-role{
+    border-right:3px solid black;
+    margin-top: 7px;
+    margin-right: 4px;
+    padding-right: 4px;
+    width: 250px;
+}
+.customer-name,.customer-email{
+    width: 180px;
+}
+.customer-role{
+    width: 70px;
+}
