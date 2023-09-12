@@ -19,7 +19,6 @@ export default function FileUploader({files,onChange}){
             });
         })
     }      
-
     const type = 'docx';
 
     return(
