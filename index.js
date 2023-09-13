@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(cors({
     credentials: true,
     origin: 'http://localhost:5173',
-    optionSuccessStatus:200
+    optionSuccessStatus:200,
 }));
 console.log("sever connected");
 mongoose.connect(mongourl);
