@@ -37,14 +37,15 @@ export default function LoginPage(){
                 <div>
                     <form onSubmit={handleLogin} className="formpg" >
                         <h2 className="loginheader">Login</h2>
-                        <h3 className="hlabel">Email:</h3>
-                            <input type="email" placeholder="your@email.com" value={email} onChange={ev => setEmail(ev.target.value)}/> 
-                        <h3 className="hlabel">Password:</h3>
-                            <input type="password" placeholder="password" value={pass} onChange={ev => setPass(ev.target.value)}/>
+                        <div className="input-tag" >
+                            <h3 className="hlabel">Email:</h3>
+                                <input type="email" placeholder="your@email.com" value={email} onChange={ev => setEmail(ev.target.value)}/> 
+                            <h3 className="hlabel">Password:</h3>
+                                <input type="password" placeholder="password" value={pass} onChange={ev => setPass(ev.target.value)}/>
+                        </div>
                         <div>
                             <button className="button bl">Login</button>
                         </div>    
-                                <p className="quest">New Here! Click <Link to="/register"><u>Here</u></Link> </p>
                         </form>
             </div>
        

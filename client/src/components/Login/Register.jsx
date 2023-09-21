@@ -23,15 +23,12 @@ export default function RegisterPage(){
                 role
             });
             alert('Registration Successful');
-            setRedirect(true);
         }
         catch(e){
             alert('Registration Failed');
         }
     }
-    if(redirect){
-        return<Navigate to={'/'}/>
-    }
+
     return(
         <div>
             <div className="login-shapes">

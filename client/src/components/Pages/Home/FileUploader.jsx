@@ -1,6 +1,6 @@
 import axios from "axios";
 import './Home.css';
-import FileViewer from "react-file-viewer";
+// import FileViewer from "react-file-viewer";
 // import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
 
 export default function FileUploader({files,onChange}){   
@@ -11,8 +11,7 @@ export default function FileUploader({files,onChange}){
             data.append('file',files[i]);
         }
         axios.post('/upload',data,{
-            headers: {
-            'Access-Control-Allow-Origin' : '*',   
+            headers: {   
             'Content-type':'multipart/form-data',
             Accept:"application/json"}
         }).then(response => {
@@ -22,20 +21,38 @@ export default function FileUploader({files,onChange}){
             });
         }).catch(err => console.log(err));
     }      
-    const type = 'docx';
-    const file = 'http://example.com/image.png';
+
+    // const type = 'docx';
+    // const file = 'http://example.com/image.png';
 
     return(
         <div className="fileUploader">
-            <label className="uploadButton"> 
-                <input type="file" multiple className="hidden" onChange={uploadFiles}/>  
-                Upload
-            </label>
-            {files.length > 0 && files.map(p =>(
-                <div>
-                    <img className="file-pics" src={`http://localhost:4000/uploads\\`+ p} alt="" />
-                </div>
-            ))}
+            <div>
+                <label className="uploadButton"> 
+                    <input type="file" multiple className="hidden" onChange={uploadFiles}/> 
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="uploadPic">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                    </svg> 
+                    Upload
+                </label>
+            </div>
+            <div>
+                {files.length > 0 && files.map(photo =>(
+                    <div className="fnm">
+                        <div className="group-names">
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="folder-pics">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                                </svg>
+                            </div>   
+                            <div className="file-name">
+                                {photo}
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
                   {/* <DocViewer
                         documents={files.map((file) => ({
                         uri: (`http://localhost:4000/uploads\\`+ file),

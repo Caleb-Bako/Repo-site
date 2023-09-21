@@ -11,7 +11,7 @@
     border: 2px solid rgba(255,255,255,0.1);
     box-shadow: 0 0 40px rgba(8,7,16,0.6);
     padding: 50px 35px;
-    color: white;
+    color: lawngreen;
 }
 .formpg h2{
     font-size: 32px;
@@ -22,13 +22,14 @@ input{
     display: block;
     height: 30px;
     width: 100%;
-    border: none;
+    border: 1px solid lightgray;
     border-radius: 8px;
     padding: 0 10px;
     margin-top: 8px;
     font-size: 14px;
     font-weight: 300;
     margin-bottom: 10px;
+    transition: border-color 0.3s ease;
 }
 .loginheader{
     padding-bottom: 50px;
@@ -86,8 +87,8 @@ input{
 .circle:last-child{
     background: linear-gradient(
         to right,
-        #ff512f,
-        #f09819
+        #3ee577,
+        lawngreen
     );
     right: -30px;
     bottom: -80px;

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import './DisplayPage.css';
 import NavBar from "../NavBar/NavBar";
+import Footer from "../Footer/Footer";
 
 export default function GenDisplay(){
     const[files,setFiles] = useState([]);
@@ -33,6 +34,7 @@ export default function GenDisplay(){
                     </Link>
                 ))}
             </div>
+            <Footer/>
         </div>
     )
 }

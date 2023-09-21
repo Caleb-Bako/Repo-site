@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs');
 require('dotenv').config();
 const User = require('./models/User.js');
 const Staff = require('./models/Staff.js');
+const File = require('./models/File.js');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const multer = require('multer');
@@ -31,7 +32,6 @@ mongoose.connect(mongourl);
 app.get('/test',(req,res) => {
     res.json('test ok boy');
 });
-
 
 //Register
 app.post('/register', async(req,res) => {
@@ -130,15 +130,24 @@ app.post('/staff', (req,res)=>{
     });
 });
 
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'uploads/')
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.originalname)
+    }
+  })
+  const upload = multer({storage: storage})
+
 //Uploading files
-const filesMiddleware = multer({dest:"uploads/"})
-app.post('/upload',filesMiddleware.array('file', 100),(req,res)=>{
+// const filesMiddleware = multer({dest:"uploads/"})
+app.post('/upload',upload.array('file', 100),(req,res)=>{
     const uploadedFiles = [];
     for(let i=0; i < req.files.length; i++){
         const {path, originalname} = req.files[i];
         const parts = originalname.split('.');
-        const ext = parts[parts.length - 1];
-        const newPath = path + '.' + ext;
+        const newPath = path;
         fs.renameSync(path, newPath);
         uploadedFiles.push(newPath.replace('uploads\\',''));
     }
@@ -211,9 +220,63 @@ app.get('/download/:id', async(req,res) =>{
           name: p,
         })),
       );
+});
+//single file download
+app.post("/createpath",async(req,res) => {
+    const {token} = req.cookies;
+    const {filenam,check} = req.body;
+        jwt.verify(token, jwtSecret, {}, async (err, userData)=>{
+            if(err) throw err;
+            await File.create({
+                owner:userData.id,
+                filenam,check
+            });
+            res.json(filenam.photo);
+        });
+});
 
-    
-    
+app.get("/getpath",async(req,res)=> {
+    const {token} = req.cookies;
+    jwt.verify(token, jwtSecret, {}, async (err, userData)=>{
+        const {id} = userData;
+        res.json(await File.find({owner:id}));
+   });
+
+});
+
+app.put('/updatefile', async(req,res) =>{
+    const {filenam,check} = req.body;
+    const {token} = req.cookies;
+    jwt.verify(token, jwtSecret, {}, async (err, userData)=>{
+        var ObjectId = require('mongodb').ObjectId;
+        const {id} = userData;
+        const convertedObjectId = new ObjectId(id);
+
+        const fileDoc = await File.findOne({owner:convertedObjectId});
+        fileDoc.set({
+            filenam,check
+        });
+        await fileDoc.save();
+        res.json('ok');  
+   });
+})
+
+app.get("/single-download",async(req, res) => {
+    const x = __dirname + "/uploads/";
+    const {token} = req.cookies;
+    jwt.verify(token, jwtSecret, {}, async (err, userData)=>{
+        if(err) throw err;
+        var ObjectId = require('mongodb').ObjectId;
+        const {id} = userData;
+        const convertedObjectId = new ObjectId(id);
+        const fileDoc = await File.findOne({owner:convertedObjectId});
+        
+        if(fileDoc){
+                res.download(x + fileDoc.filenam.photo);
+        }else{
+            res.status(422).json('not found');
+        }
+   });
 });
 
 

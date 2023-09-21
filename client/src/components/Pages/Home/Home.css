@@ -8,12 +8,23 @@
     display: flex;
     gap: 5px;
 }
+.fnm{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid rgba(255,255,255,0.1);
+    width: 1024px;
+}
 .hidden{
     visibility: hidden;
     width: 0px;
 }
+.uploadPic{
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+}
 .uploadButton{
-    border: 2px solid black;
+    border: 2px solid rgb(135, 173, 222);
     width: 155px;
     height: 95px;
     padding: 12px;
@@ -29,6 +40,15 @@
 .upload-button{
     margin: 10px 20px 10px 4px;
     padding: 8px 47%;
+}
+.folder-pics{
+    width: 40px;
+    height: 40px;
+}
+.group-names{
+    align-items: center;
+    display: flex;
+    width: 1024px;
 }
 @media(min-width:280px){
     .upload-button{
