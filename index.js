@@ -12,7 +12,7 @@ const multer = require('multer');
 const fs = require('fs');
 const zip = require('express-zip');
 const admzip = require('adm-zip');
-
+const moment = require('moment');
 const app = express();
 app.use(cookieParser());
 const bcryptSalt= bcrypt.genSaltSync(10);
@@ -124,7 +124,8 @@ app.post('/staff', (req,res)=>{
         const staffDoc = await Staff.create({
             owner:userData.id,
             name,
-            profile
+            profile,
+            time:moment().format('MMMM Do YYYY, h:mm:ss a')
         }); 
         res.json(staffDoc);
     });
@@ -188,7 +189,13 @@ app.put('/staff', async(req,res) =>{
         }
     });
 });
-
+app.delete('/folderdel/:id', async(req,res) =>{
+    var ObjectId = require('mongodb').ObjectId
+    const {id} = req.params;
+    const convertedObjectId = new ObjectId(id);
+        await Staff.deleteOne({_id: convertedObjectId });
+            res.json('successfully deleted');   
+});
 //Display all files
 app.get('/services', async(req,res)=>{
     res.json(await Staff.find())

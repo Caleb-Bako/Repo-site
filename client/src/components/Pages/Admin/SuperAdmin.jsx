@@ -16,7 +16,7 @@ export default function SuperAdminPage(){
     },[]);
 
     return(
-        <div>
+        <div className="admin-bg">
             <div>
                 <div className="top-section">
                     <div>
@@ -35,23 +35,34 @@ export default function SuperAdminPage(){
 
                     </div>
                 </div>
-        
+                <div className="s-titles">
+                    <div>
+                        <h3>Role</h3>
+                    </div>
+                    <div>
+                        <h3>Name</h3>
+                    </div>
+                    <div>
+                        <h3>Email</h3>
+                    </div>  
+                    <div>
+                        <h3>ID</h3>
+                    </div>  
+                </div>
                 {files.length > 0 && files.map(fil =>(
                     <div className="customers">
                         <div className="customer-role">
-                            <h3>Role</h3>
                             {fil.role}
                         </div>
                         <div className="customer-name">
-                            <h3>Name</h3>
                             {fil.name}
                         </div>
                         <div className="customer-email">
-                            <h3>Email</h3>
+                            
                             {fil.email}
                         </div>
                         <div className="customer-id">
-                            <h3>ID</h3>
+                            
                             {fil._id}
                         </div>
                         <div className="customer-role">

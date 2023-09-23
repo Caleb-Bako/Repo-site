@@ -3,6 +3,7 @@ import NavBar from "../NavBar/NavBar";
 import axios from "axios";
 import FileUploader from "./FileUploader";
 import { Navigate, useParams } from "react-router-dom";
+import DeleteTag from "./DeleteTag";
 export default function Home(){
     const[profile,setProfile] = useState([]);
     const[name,setName] = useState('');
@@ -37,7 +38,7 @@ export default function Home(){
             setRedirect(true);
         }
     }
-    
+
     if(redirect){
         return<Navigate to={'/home'}/>
     }
@@ -46,13 +47,21 @@ export default function Home(){
         <div>
             <NavBar/>
             <div className="home-page">
-                <form onSubmit={saveFiles}>
-                    <h2>File Name: </h2>
-                    <input type="text" placeholder="File Name" value={name} onChange={ev => setName(ev.target.value)}/> 
-                    <h2>Files:</h2>
-                        <FileUploader files={profile} onChange={setProfile}/>
-                        <button className="upload-button">Upload</button>
-                </form>
+                <div>
+                    {id &&(
+                        <DeleteTag id={id} setRedirect={setRedirect} />
+                    )}
+                </div>
+                <div className="fstr">
+                    <form onSubmit={saveFiles}>
+                        <h2>File Name: </h2>
+                        <input type="text" placeholder="File Name" value={name} onChange={ev => setName(ev.target.value)}/> 
+                        <h2>Files:</h2>
+                            <FileUploader files={profile} onChange={setProfile}/>
+                            <button className="upload-button">Upload</button>
+                    </form>     
+                </div>
+
             </div>
         </div>
     )

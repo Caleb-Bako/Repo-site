@@ -8,7 +8,6 @@
     padding: 30px 12px 20px 12px;
     align-items: center;
     background-color: #3ee577;
-    background-image: linear-gradient(315deg, #3ee577 0%, #42fcdb 74%);
     border: 2px solid rgba(255,255,255,0.1);
     box-shadow: 0 0 40px rgba(8,7,16,0.6);
 }

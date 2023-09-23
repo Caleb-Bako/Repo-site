@@ -1,6 +1,7 @@
 /* DisplayPage */
 .display-page{
     padding: 10px;
+    background-color: white;
 }
 .contentPic{
     width: 100px;
@@ -22,29 +23,76 @@
     margin-bottom: 12px;
 }
 .file-str{
-    border: 1px;
-    border-style: solid;
-    border-color: #3ee577 white;
-    padding: 6px 4px;
+    border: none;
+    padding: 6px 14px;
     display: flex;
     gap: 6px;
     align-items: center;
+    background-color: #f0f0f0;
+    margin-bottom: 3px;
 }
 .folder-pic{
     width: 20px;
     height: 20px;
     color: #3ee577;
 }
-
+.single-doc input[type="text"]{
+    background-color: #f0f0f0;
+    border-radius: 2px;
+}
 /* GenDisplay */
 .Doc{
     width: 100px;
     height: 100px;
 }
-
+.folder-titles{
+    background: rgb(135, 173, 222);
+    color: #fff;
+    padding: 8px 14px;
+    margin-bottom: 3px;
+    display: flex;
+    gap: 30%;
+    font-size: small;
+    font-weight: bold;
+}
+.folder-title{
+    background: #3ee577;
+    color: #fff;
+    padding: 8px 24px;
+    margin-bottom: 3px;
+    display: flex;
+    gap: 30%;
+    font-size: small;
+    font-weight: bold;
+}
+.headings{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.hpics{
+    width: 20px;
+    height: 20px;
+}
+.instrcs{
+    font-size: xx-large;
+    font-weight: bold;
+}
 /* SingleDoc */
+.main{
+    background: #f0f0f0;
+    padding: 40px 20px 0px 20px;
+    height: 530px;
+}
 .single-doc{
-    padding: 10px 10px 17% 10px;
+    padding: 10px 10px 24% 10px;
+    background: white;
+    box-shadow: 0 0 6px rgba(8,7,16,0.6);
+}
+.single-doc input {
+    width: 400px;
+    border-radius: 0px;
+    color: #f0f0f0;
 }
 .single-doc :hover{
     cursor: pointer;
@@ -90,14 +138,16 @@
 
 .download-folder{
     display: flex;
-    gap: 70%;
+    gap: 80%;
     padding-bottom: 10px;
     align-items: center;
 }
 .single-download{
     gap: 50%;
+    font-size: small;
 }
 .file-name{
+    font-weight: bold;
     align-items: center;
     color: rgb(135, 173, 222);
 }
@@ -108,8 +158,10 @@
     gap: 5%;
 }
 .download-btn{
-    justify-content: center;
+    display: flex;
     align-items: center;
+    font-size: small;
+    gap: 5px;
 }
 .d-id{
     display: none;
@@ -169,6 +221,6 @@
         width: 100%;
     }
     .add-file{
-        gap: 58%;
+        gap: 78%;
     }
 }
