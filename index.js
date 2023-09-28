@@ -1,11 +1,14 @@
+const User = require('./models/User.js');
+const Staff = require('./models/Staff.js');
+const File = require('./models/File.js');
+const Folder = require('./models/Share.js');
+const SingleShare = require('./models/SingleShare.js');
+
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require ("cors");
 const bcrypt = require('bcryptjs');
 require('dotenv').config();
-const User = require('./models/User.js');
-const Staff = require('./models/Staff.js');
-const File = require('./models/File.js');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const multer = require('multer');
@@ -14,11 +17,11 @@ const zip = require('express-zip');
 const admzip = require('adm-zip');
 const moment = require('moment');
 const app = express();
-app.use(cookieParser());
 const bcryptSalt= bcrypt.genSaltSync(10);
 const jwtSecret = 'GoddidGoddidGoddidGoddid';
 const mongourl = 'mongodb+srv://calebjrbako1231:'+process.env.MONGO_URL+'@repo.63afe5w.mongodb.net/'
 
+app.use(cookieParser());
 app.use('/uploads',express.static(__dirname+'/uploads'));
 app.use(express.json());
 app.use(cors({
@@ -130,7 +133,7 @@ app.post('/staff', (req,res)=>{
         res.json(staffDoc);
     });
 });
-
+//Storage path for files uploaded
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, 'uploads/')
@@ -139,7 +142,8 @@ const storage = multer.diskStorage({
       cb(null, file.originalname)
     }
   })
-  const upload = multer({storage: storage})
+
+const upload = multer({storage: storage})
 
 //Uploading files
 // const filesMiddleware = multer({dest:"uploads/"})
@@ -189,6 +193,8 @@ app.put('/staff', async(req,res) =>{
         }
     });
 });
+
+//Deleteing folders
 app.delete('/folderdel/:id', async(req,res) =>{
     var ObjectId = require('mongodb').ObjectId
     const {id} = req.params;
@@ -196,6 +202,7 @@ app.delete('/folderdel/:id', async(req,res) =>{
         await Staff.deleteOne({_id: convertedObjectId });
             res.json('successfully deleted');   
 });
+
 //Display all files
 app.get('/services', async(req,res)=>{
     res.json(await Staff.find())
@@ -241,6 +248,43 @@ app.post("/createpath",async(req,res) => {
             res.json(filenam.photo);
         });
 });
+//Folder_Share 
+app.post("/shares",async(req,res) => {
+    const {token} = req.cookies;
+    const {receiver,folder} = req.body;
+        jwt.verify(token, jwtSecret, {}, async (err, userData)=>{
+            if(err) throw err;
+            await Folder.create({
+                sender:userData.id,
+                receiver,folder
+            });
+            res.json('success');
+        });
+});
+app.get('/shared', (req,res) => {
+    const {token} = req.cookies;
+    jwt.verify(token, jwtSecret, {}, async (err, userData)=>{
+        var ObjectId = require('mongodb').ObjectId;
+        const {id} = userData;
+        const convertedObjectId = new ObjectId(id);
+        res.json(await Folder.find({$or:[{sender:convertedObjectId},{receiver:convertedObjectId}]}).populate('folder') );
+    });
+});
+
+//Single_Share 
+app.post("/singleshared",async(req,res) => {
+    const {token} = req.cookies;
+    const {receivee,file} = req.body;
+        jwt.verify(token, jwtSecret, {}, async (err, userData)=>{
+            if(err) throw err;
+            await SingleShare.create({
+                sender:userData.id,
+                receivee,file
+            });
+            res.json('success');
+        });
+});
+
 
 app.get("/getpath",async(req,res)=> {
     const {token} = req.cookies;

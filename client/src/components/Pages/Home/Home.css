@@ -9,6 +9,7 @@
     background: #f0f0f0;
     padding: 20px 20px ;
     height: fit-content;
+    display: flex;
 }
 .fstr{
     padding: 10px 10px 24% 10px;
@@ -61,8 +62,27 @@
     width: 1024px;
     background-color: #ddffdd;
 }
-.delete-tag{
-    margin-left: 93%;
+.tags{
+    display: flex;
+    gap: 87%;
+}
+.share-containerz{
+    width: 40px;
+    height: 64px;
+    padding: 18px 3px;
+    background-color: rgb(135, 173, 222);
+    border-radius: 0px 5px 5px 0px;
+    cursor: pointer;
+}
+
+.share-btn{
+    width: 40px;
+    height: 20px;
+    color: white;
+}
+.f-sect{
+    display: flex;
+    align-items: center;
 }
 @media(min-width:280px){
     .upload-button{

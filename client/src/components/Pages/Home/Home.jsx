@@ -1,14 +1,21 @@
 import { useEffect, useState } from "react";
 import NavBar from "../NavBar/NavBar";
 import axios from "axios";
+import './Home.css';
 import FileUploader from "./FileUploader";
 import { Navigate, useParams } from "react-router-dom";
 import DeleteTag from "./DeleteTag";
+import ShareFile from "../../ShareFile/ShareFile";
+import SingleSharedFile from "../../ShareFile/SingleSharedFile";
+
 export default function Home(){
     const[profile,setProfile] = useState([]);
     const[name,setName] = useState('');
+    const[showPopUp, setshowPopUp] = useState(false);
+    const[showPopUps, setshowPopUps] = useState(false);
     const[redirect,setRedirect] = useState(false);
     const {id} = useParams();
+    const [singleFile,setSingleFile] = useState('');
 
     useEffect(() => {
         if(!id){
@@ -45,11 +52,20 @@ export default function Home(){
 
     return(
         <div>
+            <ShareFile id={id} open={showPopUp} onClose={() => setshowPopUp(false)}/>
+            <SingleSharedFile singleFile={singleFile} open={showPopUps} onClose={() => setshowPopUps(false)}/>
             <NavBar/>
             <div className="home-page">
                 <div>
                     {id &&(
-                        <DeleteTag id={id} setRedirect={setRedirect} />
+                        <div className="tags">
+                            <div>
+                                <DeleteTag id={id} setRedirect={setRedirect} />
+                            </div>
+                            <div>
+                                <button onClick={() => setshowPopUp(true)}>Share</button>
+                            </div>
+                        </div>
                     )}
                 </div>
                 <div className="fstr">
@@ -57,7 +73,7 @@ export default function Home(){
                         <h2>File Name: </h2>
                         <input type="text" placeholder="File Name" value={name} onChange={ev => setName(ev.target.value)}/> 
                         <h2>Files:</h2>
-                            <FileUploader files={profile} onChange={setProfile}/>
+                            <FileUploader files={profile} onChange={setProfile} singleFile={singleFile} setSingleFile={setSingleFile} setshowPopUps={setshowPopUps}/>
                             <button className="upload-button">Upload</button>
                     </form>     
                 </div>

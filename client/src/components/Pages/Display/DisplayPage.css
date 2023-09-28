@@ -22,11 +22,11 @@
     background-color: rgb(135, 173, 222);
     margin-bottom: 12px;
 }
-.file-str{
+.file-strs{
     border: none;
     padding: 6px 14px;
     display: flex;
-    gap: 6px;
+    gap: 55%;
     align-items: center;
     background-color: #f0f0f0;
     margin-bottom: 3px;
@@ -138,12 +138,11 @@
 
 .download-folder{
     display: flex;
-    gap: 80%;
+    gap: 84%;
     padding-bottom: 10px;
     align-items: center;
 }
-.single-download{
-    gap: 50%;
+.single-downloads{
     font-size: small;
 }
 .file-name{

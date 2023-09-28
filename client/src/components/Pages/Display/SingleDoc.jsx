@@ -60,7 +60,7 @@ export default function SingleDoc(){
                         </div>
             {place.profile.length > 0 && place.profile.map((photo) => (
                 
-                        <div key={photo} className="file-str single-download">
+                        <div key={photo} className="file-strs single-downloads">
                             <div>
                                 {photo.includes("jpg"||"png"||"jpeg") &&(
                                 <div className="group-name " >
@@ -108,9 +108,6 @@ export default function SingleDoc(){
                                 {photo}
                             </div> */}
                             <div>
-                                <div>
-                                    
-                                </div>
                                 <DownloadFile photo={photo} setshowPopUp={setshowPopUp} />
                             </div>
                     </div>    
