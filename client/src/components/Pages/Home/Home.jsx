@@ -7,6 +7,7 @@ import { Navigate, useParams } from "react-router-dom";
 import DeleteTag from "./DeleteTag";
 import ShareFile from "../../ShareFile/ShareFile";
 import SingleSharedFile from "../../ShareFile/SingleSharedFile";
+import LocationFeed from "./LocationFeed";
 
 export default function Home(){
     const[profile,setProfile] = useState([]);
@@ -14,6 +15,7 @@ export default function Home(){
     const[showPopUp, setshowPopUp] = useState(false);
     const[showPopUps, setshowPopUps] = useState(false);
     const[redirect,setRedirect] = useState(false);
+     const [form,setForm] = useState('');
     const {id} = useParams();
     const [singleFile,setSingleFile] = useState('');
 
@@ -31,7 +33,7 @@ export default function Home(){
     async function saveFiles(ev){
         ev.preventDefault();
         const staffData = {
-            profile,name
+            profile,name,form
         };
         if(id){
             await axios.put('/staff', 
@@ -49,13 +51,14 @@ export default function Home(){
     if(redirect){
         return<Navigate to={'/home'}/>
     }
-
+console.log(form);
     return(
         <div>
             <ShareFile id={id} open={showPopUp} onClose={() => setshowPopUp(false)}/>
             <SingleSharedFile singleFile={singleFile} open={showPopUps} onClose={() => setshowPopUps(false)}/>
             <NavBar/>
             <div className="home-page">
+                <LocationFeed/>
                 <div>
                     {id &&(
                         <div className="tags">
@@ -73,7 +76,15 @@ export default function Home(){
                         <h2>File Name: </h2>
                         <input type="text" placeholder="File Name" value={name} onChange={ev => setName(ev.target.value)}/> 
                         <h2>Files:</h2>
-                            <FileUploader files={profile} onChange={setProfile} singleFile={singleFile} setSingleFile={setSingleFile} setshowPopUps={setshowPopUps}/>
+                            <FileUploader id={id} files={profile} onChange={setProfile} singleFile={singleFile} setSingleFile={setSingleFile} setshowPopUps={setshowPopUps}/>
+                            <div className="file-form">
+                                <div>
+                                    <label onClick={() => setForm('Public')}>Public</label>
+                                </div>
+                                <div>
+                                    <label onClick={() => setForm('Private')}>Private</label>
+                                </div>
+                            </div>
                             <button className="upload-button">Upload</button>
                     </form>     
                 </div>

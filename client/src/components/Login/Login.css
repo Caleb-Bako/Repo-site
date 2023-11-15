@@ -11,7 +11,24 @@
     border: 2px solid rgba(255,255,255,0.1);
     box-shadow: 0 0 40px rgba(8,7,16,0.6);
     padding: 50px 35px;
+    margin: 0px 13px;
     color: lawngreen;
+}
+.overlay{
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+.close-btns{
+    position: fixed;
+    top: 41px;
+    right: 450px;
+    color: white;
+    padding: 7px 6px;
+    border-radius: 999px;
+    background-color:lawngreen ;
+    cursor: pointer;
 }
 .formpg h2{
     font-size: 32px;

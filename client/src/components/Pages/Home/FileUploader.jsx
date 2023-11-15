@@ -1,11 +1,10 @@
 import axios from "axios";
 import './Home.css';
 import { useEffect, useState } from "react";
-import SingleSharedFile from "../../ShareFile/SingleSharedFile";
 // import FileViewer from "react-file-viewer";
 // import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
 
-export default function FileUploader({files,onChange,singleFile,setSingleFile,setshowPopUps}){ 
+export default function FileUploader({id,files,onChange,singleFile,setSingleFile,setshowPopUps}){ 
     useEffect(()=>{
         console.log(singleFile);
         if(singleFile > ''){
@@ -32,8 +31,12 @@ export default function FileUploader({files,onChange,singleFile,setSingleFile,se
         }).catch(err => console.log(err));
     }      
 
-    // const type = 'docx';
-    // const file = 'http://example.com/image.png';
+    function removePhoto(ev,filename){
+        ev.preventDefault();
+        onChange([...files.filter(photo => photo !== filename)]);
+        
+    }
+
 
     return(
         <div className="fileUploader">
@@ -56,18 +59,24 @@ export default function FileUploader({files,onChange,singleFile,setSingleFile,se
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
                                     </svg>
                                 </div>   
-                                <div className="file-name">
+                                <div className="file-name" key={photo}>
                                     {photo}
+                                    <button onClick={ev => removePhoto(ev,photo)} className="trashd">
+                                        X
+                                    </button>
                                 </div>
                             </div>
                         </div>
-                        <div>
-                            <div className="share-containerz" onClick={ev => setSingleFile(photo)}>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="share-btn">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 15l6-6m0 0l-6-6m6 6H9a6 6 0 000 12h3" />
-                            </svg>
+                        {id &&(
+                             <div>
+                                <div className="share-containerz" onClick={ev => setSingleFile(photo)}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="share-btn">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 15l6-6m0 0l-6-6m6 6H9a6 6 0 000 12h3" />
+                                    </svg>
+                                </div>
                             </div>
-                        </div>
+                        )}
+
                     </div>
                 ))}
             </div>

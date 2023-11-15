@@ -31,6 +31,15 @@
     background-color: #f0f0f0;
     margin-bottom: 3px;
 }
+.file-strstt{
+    border: none;
+    padding: 6px 14px;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    background-color: #f0f0f0;
+    margin-bottom: 3px;
+}
 .folder-pic{
     width: 20px;
     height: 20px;
@@ -39,6 +48,7 @@
 .single-doc input[type="text"]{
     background-color: #f0f0f0;
     border-radius: 2px;
+    width: 100%;
 }
 /* GenDisplay */
 .Doc{
@@ -82,12 +92,13 @@
 .main{
     background: #f0f0f0;
     padding: 40px 20px 0px 20px;
-    height: 530px;
+    height: 100vh;
 }
 .single-doc{
     padding: 10px 10px 24% 10px;
     background: white;
     box-shadow: 0 0 6px rgba(8,7,16,0.6);
+    height: 100vh;
 }
 .single-doc input {
     width: 400px;
@@ -165,13 +176,42 @@
 .d-id{
     display: none;
 }
-@media(min-width:280px){
+@media(max-width:280px){
     .instrc{
         font-size: small;
         width: 95%;
     }
+    .instrcs{
+        font-size: small;
+    }
     .add-file{
-        gap: 5%;
+        gap: 35%;
+    }
+    .add-file-btn{
+        padding: 5px 5px 15px 10px;
+        width: 80px;
+        height: 10px;
+    }
+    .folder-titles{
+        gap: 50%;
+        font-size: xx-small;
+    }
+    .main{
+        font-size: x-small;
+    }
+    .hpics{
+        width: 10px;
+        height: 10px;
+    }
+    .download-folder{
+        gap: 50%;
+    }
+    .file-strs{
+        gap: 25%;
+        font-size: x-small;
+    }
+    .group-name{
+        width: 140px;
     }
     
 }
@@ -181,9 +221,24 @@
         width: 95%;
     }
     .add-file{
-        gap: 5%;
+        gap: 15%;
     }
-    
+    .add-file-btn{
+        padding: 10px 5px 10px 10px;
+        width: 100px;
+    }
+    .folder-titles{
+        gap: 50%;
+    }
+    .download-folder{
+        gap: 50%;
+    }
+    .file-strs{
+        gap: 35%;
+    }
+    .group-name{
+        width: 150px;
+    }
 }
 
 @media(min-width:412px){
@@ -192,8 +247,26 @@
         width: 95%;
     }
     .add-file{
-        gap: 3%;
+        gap: 25%;
     }
+    .add-file-btn{
+        padding: 10px 5px 10px 10px;
+        width: 100px;
+    }
+    .folder-titles{
+        gap: 50%;
+    }
+    .download-folder{
+        gap: 55%;
+    }
+    .file-strs{
+        gap: 30%;
+    }
+    .group-name{
+        width: 200px;
+    }
+
+
 }
 @media(min-width:540px){
     .instrc{
@@ -201,7 +274,16 @@
         width: 100%;
     }
     .add-file{
-        gap: 58%;
+        gap: 45%;
+    }
+    .folder-titles{
+        gap: 50%;
+    }
+    .download-folder{
+        gap: 68%;
+    }
+    .group-name{
+        width: 300px;
     }
 
 }
@@ -211,7 +293,16 @@
         width: 100%;
     }
     .add-file{
-        gap: 42%;
+        gap: 62%;
+    }
+    .folder-titles{
+        gap: 50%;
+    }
+    .download-folder{
+        gap: 77%;
+    }
+    .group-name{
+        width: 430px;
     }
 }
 @media(min-width:1024px){
@@ -220,6 +311,15 @@
         width: 100%;
     }
     .add-file{
-        gap: 78%;
+        gap: 70%;
+    }
+    .folder-titles{
+        gap: 50%;
+    }
+    .download-folder{
+        gap: 80%;
+    }
+    .file-strs{
+        gap: 50%;
     }
 }

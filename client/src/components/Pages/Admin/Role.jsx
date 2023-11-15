@@ -20,6 +20,7 @@ export default function Role({id}){
                     id,role
                 });
                 alert('User Successfully set as Admin');
+                window.location.reload(true);
             }catch(e){
                 alert('Unsuccessful');
             }
