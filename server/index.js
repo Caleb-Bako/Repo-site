@@ -26,7 +26,7 @@ app.use('/uploads',express.static(__dirname+'/uploads'));
 app.use(express.json());
 app.use(cors({
     credentials: true,
-    origin: 'http://localhost:5173'|| 'https://reposite.onrender.com',
+    origin: 'https://reposite.onrender.com',
     optionSuccessStatus:200,
 }));
 console.log("sever connected");
