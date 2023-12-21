@@ -26,7 +26,7 @@ app.use('/uploads',express.static(__dirname+'/uploads'));
 app.use(express.json());
 app.use(cors({
     credentials: true,
-    origin: 'https://reposite.onrender.com',
+    origin: 'https://repo-site.netlify.app',
     optionSuccessStatus:200,
 }));
 console.log("sever connected");
