@@ -26,8 +26,7 @@ app.use('/uploads',express.static(__dirname+'/uploads'));
 app.use(express.json());
 app.use(cors({
     credentials: true,
-    origin: 'https://repo-site.netlify.app',
-    optionSuccessStatus:200,
+    origin: 'https://repo-site.netlify.app'
 }));
 console.log("sever connected");
 mongoose.connect(mongourl);
