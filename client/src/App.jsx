@@ -10,7 +10,7 @@ import GenDisplay from "./components/Pages/Display/GenDisplay";
 import SingleDoc from "./components/Pages/Display/SingleDoc";
 
 
-axios.defaults.baseURL = 'https://repo-site.netlify.app';
+axios.defaults.baseURL = 'https://reposite.onrender.com';
 axios.defaults.withCredentials = true;
 
 function App() {
